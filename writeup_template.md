@@ -19,12 +19,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: https://devblogs.nvidia.com/wp-content/uploads/2016/08/cnn-architecture-624x890.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image2]: ./examples/center.jpg "Center Image"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -127,24 +122,15 @@ To capture good driving behavior, I first recorded two laps on track one using c
 
 ![alt text][image2]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+Then I repeated this process on track two in order to get more data points.I also did reverse track in order to collect more data.
 
-Then I repeated this process on track two in order to get more data points.
+To augment the data sat, I also flipped images and angles thinking that this would increase my training data and generate better model.I also use ;eft and right camera images wirh correction rates 0.2 to angle , in order to recover my car when it goes outside of model.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
 
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+After the collection process, I had 5730*3*2=34380 number of data points. I then preprocessed this data by cropping 70px from top and 25px fro bottom to increase calculation speed.
 
 
 I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by my model. I used an adam optimizer so that manually training the learning rate wasn't necessary.
