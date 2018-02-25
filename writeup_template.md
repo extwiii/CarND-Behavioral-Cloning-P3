@@ -18,7 +18,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
+[image1]: https://devblogs.nvidia.com/wp-content/uploads/2016/08/cnn-architecture-624x890.png "Model Visualization"
 [image2]: ./examples/placeholder.png "Grayscaling"
 [image3]: ./examples/placeholder_small.png "Recovery Image"
 [image4]: ./examples/placeholder_small.png "Recovery Image"
@@ -98,7 +98,24 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 
 #### 2. Final Model Architecture
 
-The final model architecture (model.py lines 18-24) consisted of a convolution neural network with the following layers and layer sizes ...
+The final model architecture (model.py lines 65-79) consisted of a convolution neural network with the following layers and layer sizes;
+```python
+model = Sequential()
+model.add(Lambda(lambda x: x/255 - 0.5,
+        input_shape=(160, 320, 3)))
+model.add(Cropping2D(cropping=((70,25),(0,0))))
+model.add(Conv2D(24,5, strides=(2,2),activation='relu'))
+model.add(Conv2D(36,5, strides=(2,2),activation='relu'))
+model.add(Conv2D(48,5, strides=(2,2),activation='relu'))
+model.add(Conv2D(64,3,activation='relu'))
+model.add(Conv2D(64,3,activation='relu'))
+model.add(Flatten())
+model.add(Dropout(0.3))
+model.add(Dense(100))
+model.add(Dense(50))
+model.add(Dense(10))
+model.add(Dense(1))
+```
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
